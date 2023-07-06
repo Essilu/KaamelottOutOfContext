@@ -1,5 +1,8 @@
 const puppeteer = require('puppeteer');
+import quotes from './src/assets/quotes.json' assert { type: "json" };
 
+
+//todo: get all quotes from the page
 async function scrapeQuotes() {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -8,6 +11,7 @@ async function scrapeQuotes() {
   
   await browser.close();
 }
+
 
 function linkActorToCharacter (){
     const charactersMapping = {
@@ -87,5 +91,3 @@ function linkActorToCharacter (){
     fs.writeFileSync('data.json', JSON.stringify(quotesWithCharacterLine, null, 2));
     console.log("done")
   }
-
-scrapeQuotes();
