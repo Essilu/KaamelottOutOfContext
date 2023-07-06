@@ -11,18 +11,17 @@
 // - -h --help pour afficher l'aide.
 // - -v --version pour afficher la version.
 // ajouter un mode pour créer des citation avec photo de fond. (bibliotheque de photo ? )
+const fs = require('fs');
 
 const quotes = require('./src/assets/quotes.json');
 
-/**
- * 
- * @param {string} character 
- * @param {string} author 
- * @param {number} book 
- * @param {number} episode 
- */
-function searchQuote(character = "all", author = "all", book = 0, episode = 0) {
-    
-  }
+function getAllActors () {
+  const actors = Array.from(new Set(quotes.map(quote => quote.actor)));
+  return actors;
+}
 
-console.log(helloNpm());
+function getRandomQuote () {
+  return quotes[Math.floor(Math.random() * quotes.length)];
+}
+
+console.log(linkActorToCharacter());
