@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/essilu/kaamelottoutofcontext/issues"
   },
-  "homepage": "https://github.com/essilu/kaamelottoutofcontext#readme"
+  "homepage": "https://github.com/essilu/kaamelottoutofcontext#readme",
+  "dependencies": {
+    "commander": "^11.0.0"
+  }
 }
