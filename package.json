@@ -1,0 +1,27 @@
+{
+  "name": "kaamelottoutofcontext",
+  "version": "1.0.0",
+  "description": "Get random quotes from Kaamelott out of context.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/essilu/kaamelottoutofcontext.git"
+  },
+  "keywords": [
+    "kaamelott",
+    "alexandre",
+    "astier",
+    "quotes",
+    "perceval",
+    "arthur"
+  ],
+  "author": "Essilu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/essilu/kaamelottoutofcontext/issues"
+  },
+  "homepage": "https://github.com/essilu/kaamelottoutofcontext#readme"
+}
