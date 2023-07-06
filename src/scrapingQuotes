@@ -1,5 +1,12 @@
-import puppeteer from 'puppeteer';
+const puppeteer = require('puppeteer');
 
-function scrapeQuotes() {
+async function scrapeQuotes() {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto('https://kaamelott.fandom.com/fr/wiki/Citations');
+
   
+  await browser.close();
 }
+
+scrapeQuotes();
