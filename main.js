@@ -1,27 +1,42 @@
-//main.js
+import quotes from "./src/assets/quotes.json" assert { type: "json" };
+import chalk from "chalk";
 
-//Installer le package commander pour créer des commandes simples et avec des options. 
-//trouver des parametres : -a --author pour les auteurs de la quote. -n --number pour le nombre de quote.
-
-//  Features : 
-//  -a --author pour les auteurs de la quote.
-//  -b --book pour le livre de la quote.
-//  -c --character pour le personnage de la quote.
-// -reload la liste des quotes. (scraper le wikifandom ? https://kaamelott.fandom.com/fr/wiki/Citations)
-// - -h --help pour afficher l'aide.
-// - -v --version pour afficher la version.
-// ajouter un mode pour créer des citation avec photo de fond. (bibliotheque de photo ? )
-const fs = require('fs');
-
-const quotes = require('./src/assets/quotes.json');
-
-function getAllActors () {
-  const actors = Array.from(new Set(quotes.map(quote => quote.actor)));
+// Get all actors from the quotes.json file
+function getAllActors() {
+  const actors = Array.from(new Set(quotes.map((quote) => quote.actor)));
   return actors;
 }
 
-function getRandomQuote () {
+// Get random quotes from the quotes.json file
+function getRandomQuote() {
   return quotes[Math.floor(Math.random() * quotes.length)];
 }
 
-console.log(linkActorToCharacter());
+function getQuotebyId(id) {
+  return quotes[id]
+}
+
+// Format the quote with the character name, context and quote
+function formatQuote(quote) {
+  let formattedQuote = chalk.blue(`${quote.character}`) + `: ${quote.quote}`;
+
+  // if the quote starts with a ( its a context format it accordingly
+  if (quote.quote.startsWith("(")) {
+    let endIndex = quote.quote.indexOf(")");
+    formattedQuote =
+      chalk.italic(quote.quote.substring(1, endIndex)) + "\n"
+      chalk.blue(`${quote.character}`) +
+      `: ${quote.quote}`;
+    
+  // if the quote starts with a [ its a saying format it accordingly
+  } else if (quote.quote.startsWith("[")) {
+    let endIndex = quote.quote.indexOf("]");
+    formattedQuote =
+      chalk.italic(quote.quote.substring(1, endIndex)) + "\n" +
+      chalk.blue(`${quote.character}`) +
+      `: ${quote.quote}`;
+    
+  }
+  return formattedQuote;
+}
+console.log(formatQuote(getQuotebyId(1)));
