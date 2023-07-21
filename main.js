@@ -16,27 +16,35 @@ function getQuotebyId(id) {
   return quotes[id]
 }
 
+function getRandomQuoteFromActor(actor) {
+  const quotesFromActor = quotes.filter((quote) => quote.actor === actor);
+  return quotesFromActor[Math.floor(Math.random() * quotesFromActor.length)];
+}
+
 // Format the quote with the character name, context and quote
 function formatQuote(quote) {
   let formattedQuote = chalk.blue(`${quote.character}`) + `: ${quote.quote}`;
 
-  // if the quote starts with a ( its a context format it accordingly
+  // if the quote starts with a (, it's a context, format it accordingly
   if (quote.quote.startsWith("(")) {
     let endIndex = quote.quote.indexOf(")");
+    let extractedContent = quote.quote.substring(1, endIndex);
     formattedQuote =
-      chalk.italic(quote.quote.substring(1, endIndex)) + "\n"
+      chalk.italic(extractedContent.trim()) + "\n" +
       chalk.blue(`${quote.character}`) +
-      `: ${quote.quote}`;
-    
-  // if the quote starts with a [ its a saying format it accordingly
+      `: ${quote.quote.substring(endIndex + 1).trim()}`;
+
+  // if the quote starts with a [, it's a saying, format it accordingly
   } else if (quote.quote.startsWith("[")) {
     let endIndex = quote.quote.indexOf("]");
+    let extractedContent = quote.quote.substring(1, endIndex);
     formattedQuote =
-      chalk.italic(quote.quote.substring(1, endIndex)) + "\n" +
+      chalk.italic(extractedContent.trim()) + "\n" +
       chalk.blue(`${quote.character}`) +
-      `: ${quote.quote}`;
-    
+      `: ${quote.quote.substring(endIndex + 1).trim()}`;
   }
+
   return formattedQuote;
 }
-console.log(formatQuote(getQuotebyId(1)));
+
+console.log(formatQuote(getRandomQuote()));
